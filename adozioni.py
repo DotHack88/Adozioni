@@ -74,9 +74,10 @@ def seleziona_immagini():
     file_path = filedialog.askopenfilenames(title="Seleziona le immagini", filetypes=[("Immagini", "*.jpg *.jpeg *.png *.gif")])
     
     # Trasforma il percorso dei file in una lista di stringhe
-    file_list = root.tk.splitlist(file_path)
+    file_list = list(file_path)
 
     return file_list
+
 
 def main():
     print("Benvenuto nel modulo di adozione!")
