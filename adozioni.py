@@ -2,7 +2,8 @@ import tkinter as tk
 from tkinter import filedialog
 
 class Adozione:
-    def __init__(self, razza, nome, descrizione, contatti, foto):
+    def __init__(self, tipo_animale, razza, nome, descrizione, contatti, foto):
+        self.tipo_animale = tipo_animale
         self.razza = razza
         self.nome = nome
         self.descrizione = descrizione
@@ -55,6 +56,7 @@ class Adozione:
             <body>
                 <div class="container">
                     <h1>🐾 Dettagli Adozione 🐾</h1>
+                    <p><strong>🐶 Tipo Animale:</strong> {self.tipo_animale}</p>
                     <p><strong>🐶 Razza:</strong> {self.razza}</p>
                     <p><strong>🐾 Nome:</strong> {self.nome}</p>
                     <p><strong>💬 Descrizione:</strong> {self.descrizione}</p>
@@ -81,9 +83,14 @@ def seleziona_immagini():
 
 def main():
     print("Benvenuto nel modulo di adozione!")
-    razza = input("Inserisci la razza dell'animale: ")
-    nome = input("Inserisci il nome dell'animale: ")
-    descrizione = input("Inserisci una breve descrizione dell'animale: ")
+    tipo_animale = input("Seleziona il tipo di animale (cane o gatto): ").lower()
+    if tipo_animale not in ['cane', 'gatto']:
+        print("Tipo di animale non valido. Si prega di inserire 'cane' o 'gatto'.")
+        return
+
+    razza = input(f"Inserisci la razza del {tipo_animale}: ")
+    nome = input(f"Inserisci il nome del {tipo_animale}: ")
+    descrizione = input("Inserisci una breve descrizione: ")
     contatti = input("Inserisci informazioni e contatti per l'adozione: ")
 
     print("Seleziona le immagini dell'animale:")
@@ -92,7 +99,7 @@ def main():
 
     foto = foto_online + foto_locali
     
-    adozione = Adozione(razza, nome, descrizione, contatti, foto)
+    adozione = Adozione(tipo_animale, razza, nome, descrizione, contatti, foto)
     
     # Chiediamo all'utente di inserire il nome del file per il salvataggio
     nome_file = input("Inserisci il nome del file per il salvataggio (senza estensione): ")
